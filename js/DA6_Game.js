@@ -44,7 +44,7 @@ Secrets.Game.prototype = {
 		map.addTilesetImage('greenBlock_32x32', 'greenBlock');
 		map.addTilesetImage('blueBlock_32x32', 'blueBlock');
 		layer = map.createLayer('Background');
-		layer = map.createLayer('Platforms');
+		layer = map.createLayer('Land');
 		layer.resizeWorld();
 		map.setCollision(2, true, 'Platforms', true);
 	///////////////////////////////////////////////////////////////////////////////////////////////////
