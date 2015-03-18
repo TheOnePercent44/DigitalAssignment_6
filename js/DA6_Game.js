@@ -58,7 +58,7 @@ Secrets.Game.prototype = {
 			baddies.add(newEnemy(this.game));
 		}
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
-		yellowSB = this.game.add.sprite(this.game.camera.width/2-16, 704);//center of the camera, shifted 16 left to center the square
+		yellowSB = this.game.add.sprite(this.game.camera.x+(this.game.camera.x/2)-16, 704);//the camera's x postion, +center of the camera, shifted 16 left to center the square
 		orangeLB = this.game.add.sprite(yellowSB.x-48, 704);//position of yellow, -spacing of 48
 		orangeRB = this.game.add.sprite(yellowSB.x+32+48, 704);//position of yellow, +width of yellow, +spacing of 48
 		
