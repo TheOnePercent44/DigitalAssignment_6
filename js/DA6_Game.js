@@ -84,9 +84,9 @@ function newEnemy(game)
 	ycoord = game.rnd.integerInRange(16, 3184);
 	
 	var hume = new Enemy(game, xcoord, ycoord);
-	while(game.physics.arcade.collide(hume, layer) || game.physics.arcade.collide(hume, player) || game.physics.arcade.collide(hume, enemies))
+	while(game.physics.arcade.collide(hume, baddies))//game.physics.arcade.collide(hume, layer) || 
 	{
-		xcoord = game.rnd.integerInRange(0, 3168);
+		xcoord = game.rnd.integerInRange(0, 3168);//removed collision checks for player and layer from above for now
 		ycoord = 608
 		hume.kill();
 		hume.reset(xcoord, ycoord);
