@@ -167,7 +167,7 @@ function EnemyUpdate(enemysprite, game)
 		this.game.physics.enable(temp, Phaser.Physics.ARCADE);
 		temp.body.velocity.x = Math.cos(rotation) * 350;//change the number to make faster and whatnot
 		temp.body.velocity.y = Math.sin(rotation) * 350;
-		bulletgroup.add(temp);
+		enemybullets.add(temp);
 	}
 };
 
