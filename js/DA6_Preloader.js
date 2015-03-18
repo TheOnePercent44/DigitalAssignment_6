@@ -26,13 +26,15 @@ Secrets.Preloader.prototype = {
 
 		//	Here we load the rest of the assets our game needs.
 		//this.load.spritesheet('button', 'assets/flixel-button.png', 80, 20);
-		//this.load.tilemap('map', 'assets/FriendThrowerTest.json', null, Phaser.Tilemap.TILED_JSON);
+		this.load.tilemap('map', 'assets/UFOTest1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('greenBlock', 'assets/greenBlock_32x32.png');
 		this.load.image('purpleBlock', 'assets/purpleBlock_32x32.png');
 		this.load.image('redBlock', 'assets/redBlock_32x32.png');
 		this.load.image('yellowBlock', 'assets/yellowBlock_32x32.png');
 		this.load.image('blueBlock', 'assets/blueBlock_32x32.png');
 		this.load.image('orangeBlock', 'assets/orangeBlock_32x32.png');
+		this.load.image('purpleShot', 'assets/purple_ball.png');
+		this.load.image('redShot', 'assets/red_ball.png');
 	},
 
 	create: function () {

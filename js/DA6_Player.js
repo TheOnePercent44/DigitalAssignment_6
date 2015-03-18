@@ -1,71 +1,32 @@
-function newPlayer(game, xcoord, ycoord)
+function Player(game, xcoord, ycoord)
 {
 	this.game = game;
-	this.sprite = this.game.add.sprite(xcoord, ycoord, 'redBlock');
-	//this.game.physics.enable(this.sprite, Phaser.Physics.P2JS);
+	this.sprite = this.game.add.sprite(xcoord, ycoord, 'purpleBlock');
 	this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-	this.sprite.body.allowGravity = true;
-	this.inAir = false;
-	
-	this.MAX_SPEED = 250; // pixels/second
+	this.MAX_SPEED = 500; // pixels/second
     this.ACCELERATION = 1500; // pixels/second/second
-    this.DRAG = 600; // pixels/second
-    //this.GRAVITY = 2600; // pixels/second/second
-    this.JUMP_SPEED = -175; // pixels/second (negative y is up)
+    this.DRAG = 300; // pixels/second
+	this.sprite.body.maxVelocity.setTo(this.MAX_SPEED, 0); // x, y
+	this.sprite.body.drag.setTo(this.DRAG, 0); // x, y
 	
 	this.idle = function()
 	{
-		if(this.inAir === true)//should never actually run
-		{
-			if(this.sprite.body.velocity.y === 0)
-				this.inAir = false;
-		}
-		else
-		{
-			this.sprite.body.velocity.x = 0;
-		}
+		this.sprite.body.acceleration.x = 0;
 	}
 	
-	this.runRight = function()
+	this.moveRight = function()
 	{
-		if(this.inAir != true)
-		{
-			this.sprite.body.velocity.x = this.MAX_SPEED;
-			//this.sprite.scale.x = 1;
-		}
+		this.sprite.body.acceleration.x = this.ACCELERATION;
 	}
 	
-	this.runLeft = function()
+	this.moveLeft = function()
 	{
-		if(this.inAir != true)
-		{
-			this.sprite.body.velocity.x = -this.MAX_SPEED;
-			//this.sprite.scale.x = -1;
-		}
+		this.sprite.body.acceleration.x = -this.ACCELERATION;
 	}
 	
-	this.jump = function()
+	this.shoot = function()
 	{
-		if(this.inAir != true)
-		{
-			this.sprite.body.velocity.y = this.JUMP_SPEED;
-			this.inAir = true;
-		}
-	}
-	
-	this.hitLand = function(player, layer)//accepts two arguments for compatibility with collide
-	{
-		if(this.inAir === true)// && this.sprite.body.velocity.y > 0)
-		{
-			this.inAir = false;
-		}
-		else{}//do nothing, let idle or others take care of it
-	}
-	
-	this.climb = function(player, zombieFriend)//acceptss two arguments for compatibility with overlaps
-	{
-		//console.log("Overlap detected: climbing");
-		this.sprite.body.velocity.y = this.JUMP_SPEED;
+		
 	}
 	
 	return this;
