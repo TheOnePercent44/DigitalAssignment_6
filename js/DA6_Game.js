@@ -158,7 +158,7 @@ function Enemy(game, xcoord, ycoord)
 
 function EnemyUpdate(enemysprite, game)
 {
-	if(enemysprite.inWorld && shootFlag)
+	if(enemysprite.inCamera && shootFlag)//(enemysprite.inWorld
 	{
 		var rotation = this.game.math.angleBetween(enemysprite.x, enemysprite.y,player.sprite.x, player.sprite.y);
 		
@@ -188,7 +188,8 @@ function bulletClash(playerbullet, bulletsprite)
 
 function playerDie(playersprite, bulletsprite)//wrapper to use state change
 {
-	player.kill(playersprite, bulletsprite);
+	player.sprite.kill();
+	bulletsprite.kill();
 	this.state.start('LoseScreen');
 };
 
