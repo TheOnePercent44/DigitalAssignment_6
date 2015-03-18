@@ -27,7 +27,8 @@ function newPlayer(game, xcoord, ycoord)
 	
 	this.shoot = function(bulletgroup)
 	{
-		var temp = this.game.add.sprite(this.sprite.x, this.sprite.y, 'purpleShot')
+		var temp = this.game.add.sprite(this.sprite.x, this.sprite.y, 'purpleShot');
+		this.game.physics.enable(temp, Phaser.Physics.ARCADE);
 		temp.body.velocity.x = this.sprite.body.velocity.x;
 		temp.body.velocity.y = 300;
 		bulletgroup.add(temp);
