@@ -25,7 +25,7 @@ Secrets.Preloader.prototype = {
 		//this.load.setPreloadSprite(this.preloadBar);
 
 		//	Here we load the rest of the assets our game needs.
-		this.load.spritesheet('button', 'assets/flixel-button.png', 80, 20);
+		//this.load.spritesheet('button', 'assets/flixel-button.png', 80, 20);
 		this.load.tilemap('map', 'assets/FriendThrowerTest.json', null, Phaser.Tilemap.TILED_JSON);
 		this.load.image('greenBlock', 'assets/greenBlock_32x32.png');
 		this.load.image('purpleBlock', 'assets/purpleBlock_32x32.png');
