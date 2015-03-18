@@ -25,7 +25,8 @@ Secrets.Game = function (game) {
 };
 
 var layer, map, leftKey, rightKey, spaceKey, upKey, downKey, aKey, sKey, dKey, wKey;
-var player, baddies, orangeLB, orangeRB, yellowSB;
+var player, baddies, orangeLB, orangeRB, yellowSB, bulletgroup;
+var LBflag, RBflag;
 Secrets.Game.prototype = {
     create: function () {
 	///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,6 +59,9 @@ Secrets.Game.prototype = {
 		{
 			baddies.add(newEnemy(this.game));
 		}
+	///////////////////////////////////////////////////////////////////////////////////////////////////
+		bulletgroup = this.game.add.group();
+		bulletgroup.enableBody = true;
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 		yellowSB = this.game.add.sprite(this.game.camera.x+(this.game.camera.width/2)-16, 704, 'yellowBlock');//the camera's x postion, +center of the camera, shifted 16 left to center the square
 		orangeLB = this.game.add.sprite(yellowSB.x-48, 704, 'orangeBlock');//position of yellow, -spacing of 48
@@ -67,17 +71,23 @@ Secrets.Game.prototype = {
 		orangeLB.inputEnabled = true;
 		orangeRB.inputEnabled = true;
 		
-		yellowSB.events.onInputDown.add(playerIdle, this.game);
+		yellowSB.events.onInputDown.add(playerShoot, this.game);
 		orangeLB.events.onInputDown.add(movePlayerLeft, this.game);
 		orangeRB.events.onInputDown.add(movePlayerRight, this.game);
+		yellowSB.events.onInputUp.add(playerShoot, this.game);
+		orangeLB.events.onInputUp.add(movePlayerLeft, this.game);
+		orangeRB.events.onInputUp.add(movePlayerRight, this.game);
+		
+		LBflag = false;
+		RBflag = false;
     },
 
     update: function () {
-		if(rightKey.isDown)//temporary test movement functionality
+		if(rightKey.isDown || RBflag)//temporary test movement functionality
 		{
 			player.moveRight();
 		}
-		else if(leftKey.isDown)
+		else if(leftKey.isDown || LBflag)
 		{
 			player.moveLeft();
 		}
@@ -137,17 +147,17 @@ function EnemyDie(friend, enemysprite)
 	enemysprite.kill();
 };
 
-function playerIdle()
+function playerShoot()
 {
-	player.idle();
+	player.shoot(bulletgroup);
 };
 
 function movePlayerLeft()
 {
-	player.moveLeft();
+	LBflag = !LBflag;
 };
 
 function movePlayerRight()
 {
-	player.moveRight();
+	RBflag = !RBflag;
 };

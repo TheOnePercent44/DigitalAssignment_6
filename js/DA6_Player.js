@@ -25,10 +25,10 @@ function newPlayer(game, xcoord, ycoord)
 		this.sprite.body.acceleration.x = -this.ACCELERATION;
 	}
 	
-	this.shoot = function()//accepted 
+	this.shoot = function(bulletgroup)
 	{
 		
 	}
 	
 	return this;
-}
+};
