@@ -72,7 +72,18 @@ Secrets.Game.prototype = {
     },
 
     update: function () {
-		
+		if(rightKey.isDown)//temporary test movement functionality
+		{
+			player.runRight();
+		}
+		else if(leftKey.isDown)
+		{
+			player.runLeft();
+		}
+		else
+		{
+			player.idle();
+		}
     },
 
     quitGame: function (pointer) {
