@@ -31,6 +31,8 @@ Secrets.Preloader.prototype = {
 		this.load.image('purpleBlock', 'assets/purpleBlock_32x32.png');
 		this.load.image('redBlock', 'assets/redBlock_32x32.png');
 		this.load.image('yellowBlock', 'assets/yellowBlock_32x32.png');
+		this.load.image('blueBlock', 'assets/blueBlock_32x32.png');
+		this.load.image('orangeBlock', 'assets/orangeBlock_32x32.png');
 	},
 
 	create: function () {
