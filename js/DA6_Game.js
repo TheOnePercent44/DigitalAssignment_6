@@ -106,7 +106,7 @@ Secrets.Game.prototype = {
 		{
 			player.idle();
 		}
-		if(this.game.time.now-timeMark > 1500)
+		if(this.game.time.now-timeMark > 2000)
 		{
 			shootFlag = true;
 		}
