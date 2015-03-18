@@ -152,8 +152,8 @@ function EnemyUpdate(enemysprite, game)
 		
 		var temp = this.game.add.sprite(enemysprite.x, enemysprite.y, 'redShot');
 		this.game.physics.enable(temp, Phaser.Physics.ARCADE);
-		temp.body.velocity.x = Math.cos(rotation) * this.MAX_SPEED;
-		temp.body.velocity.y = Math.sin(rotation) * this.MAX_SPEED;
+		temp.body.velocity.x = Math.cos(rotation) * 400;//change the number to make faster and whatnot
+		temp.body.velocity.y = Math.sin(rotation) * 400;
 		bulletgroup.add(temp);
 	}
 };
@@ -161,6 +161,7 @@ function EnemyUpdate(enemysprite, game)
 function EnemyDie(playerbullet, enemysprite)
 {
 	enemysprite.kill();
+	playerbullet.destroy();
 	if(baddies.countLiving === 0)
 	{
 		this.state.start('WinScreen');
