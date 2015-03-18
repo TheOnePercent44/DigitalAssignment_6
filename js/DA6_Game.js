@@ -26,7 +26,7 @@ Secrets.Game = function (game) {
 
 var layer, map, leftKey, rightKey, spaceKey, upKey, downKey, aKey, sKey, dKey, wKey;
 var player, baddies, orangeLB, orangeRB, yellowSB, bulletgroup, enemybullets;
-var LBflag, RBflag;
+var LBflag, RBflag, timeMark;
 Secrets.Game.prototype = {
     create: function () {
 	///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,8 @@ Secrets.Game.prototype = {
 		
 		LBflag = false;
 		RBflag = false;
+		
+		timeMark = this.game.time.now;
     },
 
     update: function () {
@@ -146,7 +148,7 @@ function Enemy(game, xcoord, ycoord)
 
 function EnemyUpdate(enemysprite, game)
 {
-	if(enemysprite.inWorld)
+	if(enemysprite.inWorld && game.time.now-timeMark > 1500)
 	{
 		var rotation = this.game.math.angleBetween(enemysprite.x, enemysprite.y,player.sprite.x, player.sprite.y);
 		
@@ -155,6 +157,7 @@ function EnemyUpdate(enemysprite, game)
 		temp.body.velocity.x = Math.cos(rotation) * 400;//change the number to make faster and whatnot
 		temp.body.velocity.y = Math.sin(rotation) * 400;
 		bulletgroup.add(temp);
+		timeMark = game.time.now;
 	}
 };
 
