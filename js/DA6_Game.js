@@ -25,7 +25,7 @@ Secrets.Game = function (game) {
 };
 
 var layer, map, leftKey, rightKey, spaceKey, upKey, downKey, aKey, sKey, dKey, wKey;
-var player, baddies, orangeLB, orangeRB, yellowSB, bulletgroup;
+var player, baddies, orangeLB, orangeRB, yellowSB, bulletgroup, enemybullets;
 var LBflag, RBflag;
 Secrets.Game.prototype = {
     create: function () {
@@ -62,6 +62,9 @@ Secrets.Game.prototype = {
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 		bulletgroup = this.game.add.group();
 		bulletgroup.enableBody = true;
+		
+		enemybullets = this.game.add.group();
+		enemybullets.enableBody = true;
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 		yellowSB = this.game.add.sprite(this.game.camera.x+(this.game.camera.width/2)-16, 704, 'yellowBlock');//the camera's x postion, +center of the camera, shifted 16 left to center the square
 		orangeLB = this.game.add.sprite(yellowSB.x-48, 704, 'orangeBlock');//position of yellow, -spacing of 48
@@ -74,7 +77,7 @@ Secrets.Game.prototype = {
 		yellowSB.events.onInputDown.add(playerShoot, this.game);
 		orangeLB.events.onInputDown.add(movePlayerLeft, this.game);
 		orangeRB.events.onInputDown.add(movePlayerRight, this.game);
-		yellowSB.events.onInputUp.add(playerShoot, this.game);
+		//yellowSB.events.onInputUp.add(playerShoot, this.game);
 		orangeLB.events.onInputUp.add(movePlayerLeft, this.game);
 		orangeRB.events.onInputUp.add(movePlayerRight, this.game);
 		
@@ -83,6 +86,10 @@ Secrets.Game.prototype = {
     },
 
     update: function () {
+		this.game.physics.arcade.collide(player.sprite, enemybullets, playerDie, null, this);
+		this.game.physics.arcade.collide(bulletgroup, baddies, EnemyDie, null, this);
+		this.game.physics.arcade.collide(bulletgroup, enemybullets, bulletClash, null, this);
+		
 		if(rightKey.isDown || RBflag)//temporary test movement functionality
 		{
 			player.moveRight();
@@ -95,7 +102,7 @@ Secrets.Game.prototype = {
 		{
 			player.idle();
 		}
-		
+		enemygroup.forEachAlive(EnemyUpdate, this);
 		//update button positions
 		yellowSB.x = this.game.camera.x+(this.game.camera.width/2)-16;
 		orangeLB.x = yellowSB.x-48;
@@ -139,12 +146,37 @@ function Enemy(game, xcoord, ycoord)
 
 function EnemyUpdate(enemysprite, game)
 {
-	
+	if(enemysprite.inWorld)
+	{
+		var rotation = this.game.math.angleBetween(enemysprite.x, enemysprite.y,player.sprite.x, player.sprite.y);
+		
+		var temp = this.game.add.sprite(enemysprite.x, enemysprite.y, 'redShot');
+		this.game.physics.enable(temp, Phaser.Physics.ARCADE);
+		temp.body.velocity.x = Math.cos(rotation) * this.MAX_SPEED;
+		temp.body.velocity.y = Math.sin(rotation) * this.MAX_SPEED;
+		bulletgroup.add(temp);
+	}
 };
 
-function EnemyDie(friend, enemysprite)
+function EnemyDie(playerbullet, enemysprite)
 {
 	enemysprite.kill();
+	if(baddies.countLiving === 0)
+	{
+		this.state.start('WinScreen');
+	}
+};
+
+function bulletClash(playerbullet, bulletsprite)
+{
+	playerbullet.destroy();
+	bulletsprite.destroy();
+};
+
+function playerDie(playersprite, bulletsprite)//wrapper to use state change
+{
+	player.kill(playersprite, bulletsprite);
+	this.state.start('LoseScreen');
 };
 
 function playerShoot()

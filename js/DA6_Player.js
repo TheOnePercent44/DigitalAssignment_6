@@ -34,5 +34,11 @@ function newPlayer(game, xcoord, ycoord)
 		bulletgroup.add(temp);
 	}
 	
+	this.kill = function(playersprite, bulletsprite)
+	{
+		bulletsprite.destroy();
+		this.sprite.destroy();
+	}
+	
 	return this;
 };
