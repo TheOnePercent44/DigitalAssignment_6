@@ -20,7 +20,7 @@ Secrets.MainMenu.prototype = {
 		//add text
 		var text = this.game.add.text(this.game.camera.width*0.18, this.game.camera.width*0.15, "Controls will go here", { font: "30px Arial", fill: "#FFFFFF", align: "center" });
 		//this.playButton = this.add.button(400, 600, 'playButton', this.startGame, this, 'buttonOver', 'buttonOut', 'buttonOver');
-		this.playButton = this.add.button(this.game.world.centerX-35, this.game.world.centerY+100, 'button', this.startGame, this, 1, 0, 2);
+		//this.playButton = this.add.button(this.game.world.centerX-35, this.game.world.centerY+100, 'button', this.startGame, this, 1, 0, 2);
 
 	},
 
