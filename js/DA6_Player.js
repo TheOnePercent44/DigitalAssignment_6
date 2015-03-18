@@ -1,4 +1,4 @@
-function Player(game, xcoord, ycoord)
+function newPlayer(game, xcoord, ycoord)
 {
 	this.game = game;
 	this.sprite = this.game.add.sprite(xcoord, ycoord, 'purpleBlock');

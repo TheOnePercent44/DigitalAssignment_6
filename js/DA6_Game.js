@@ -48,7 +48,7 @@ Secrets.Game.prototype = {
 		layer.resizeWorld();
 		map.setCollision(2, true, 'Land', true);
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-		player = new Player(this.game, this.game.rnd.integerInRange(0, 3168), 320);
+		player = new newPlayer(this.game, this.game.rnd.integerInRange(0, 3168), 320);
 		this.game.camera.follow(player.sprite, this.game.camera.FOLLOW_PLATFORMER);
 		this.game.camera.width = 800;//dangerous use of camera.width?
 		
@@ -67,9 +67,9 @@ Secrets.Game.prototype = {
 		orangeLB.inputEnabled = true;
 		orangeRB.inputEnabled = true;
 		
-		yellowSB.events.onInputDown.add(player.shoot, this);
-		orangeLB.events.onInputDown.add(player.moveLeft, this);
-		orangeRB.events.onInputDown.add(player.moveRight, this);
+		yellowSB.events.onInputDown.add(playerIdle, this);
+		orangeLB.events.onInputDown.add(movePlayerLeft, this);
+		orangeRB.events.onInputDown.add(movePlayerRight, this);
     },
 
     update: function () {
@@ -135,4 +135,19 @@ function EnemyUpdate(enemysprite, game)
 function EnemyDie(friend, enemysprite)
 {
 	enemysprite.kill();
+};
+
+function playerIdle()
+{
+	player.idle();
+};
+
+function movePlayerLeft()
+{
+	player.moveLeft();
+};
+
+function movePlayerRight()
+{
+	player.moveRight();
 };
