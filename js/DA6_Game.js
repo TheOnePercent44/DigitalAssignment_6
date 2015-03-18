@@ -24,7 +24,7 @@ Secrets.Game = function (game) {
 
 };
 
-var leftKey, rightKey, spaceKey, upKey, downKey, aKey, sKey, dKey, wKey;
+var layer, leftKey, rightKey, spaceKey, upKey, downKey, aKey, sKey, dKey, wKey;
 var player, baddies, orangeLB, orangeRB, yellowSB;
 Secrets.Game.prototype = {
     create: function () {
