@@ -102,7 +102,7 @@ Secrets.Game.prototype = {
 		{
 			player.idle();
 		}
-		enemygroup.forEachAlive(EnemyUpdate, this);
+		baddies.forEachAlive(EnemyUpdate, this);
 		//update button positions
 		yellowSB.x = this.game.camera.x+(this.game.camera.width/2)-16;
 		orangeLB.x = yellowSB.x-48;
