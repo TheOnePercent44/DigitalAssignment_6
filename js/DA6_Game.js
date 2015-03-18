@@ -89,10 +89,10 @@ Secrets.Game.prototype = {
     },
 
     update: function () {
-		this.game.physics.arcade.collide(player.sprite, enemybullets, playerDie, null, this);
-		this.game.physics.arcade.collide(bulletgroup, baddies, EnemyDie, null, this);
-		this.game.physics.arcade.collide(bulletgroup, enemybullets, bulletClash, null, this);
-		this.game.physics.arcade.collide(bulletgroup, layer, bulletKill, null, this);
+		this.game.physics.arcade.overlap(player.sprite, enemybullets, playerDie, null, this);
+		this.game.physics.arcade.overlap(bulletgroup, baddies, EnemyDie, null, this);
+		this.game.physics.arcade.overlap(bulletgroup, enemybullets, bulletClash, null, this);
+		this.game.physics.arcade.overlap(bulletgroup, layer, bulletKill, null, this);
 		
 		if(rightKey.isDown || RBflag)//temporary test movement functionality
 		{
