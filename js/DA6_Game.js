@@ -74,11 +74,11 @@ Secrets.Game.prototype = {
     update: function () {
 		if(rightKey.isDown)//temporary test movement functionality
 		{
-			player.runRight();
+			player.moveRight();
 		}
 		else if(leftKey.isDown)
 		{
-			player.runLeft();
+			player.moveLeft();
 		}
 		else
 		{
