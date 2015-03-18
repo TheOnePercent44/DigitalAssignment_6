@@ -67,9 +67,9 @@ Secrets.Game.prototype = {
 		orangeLB.inputEnabled = true;
 		orangeRB.inputEnabled = true;
 		
-		yellowSB.events.onInputDown.add(playerIdle, this);
-		orangeLB.events.onInputDown.add(movePlayerLeft, this);
-		orangeRB.events.onInputDown.add(movePlayerRight, this);
+		yellowSB.events.onInputDown.add(playerIdle, this.game);
+		orangeLB.events.onInputDown.add(movePlayerLeft, this.game);
+		orangeRB.events.onInputDown.add(movePlayerRight, this.game);
     },
 
     update: function () {
