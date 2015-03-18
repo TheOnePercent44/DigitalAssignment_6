@@ -161,7 +161,7 @@ function EnemyUpdate(enemysprite, game)
 function EnemyDie(playerbullet, enemysprite)
 {
 	enemysprite.kill();
-	playerbullet.destroy();
+	playerbullet.kill();
 	if(baddies.countLiving === 0)
 	{
 		this.state.start('WinScreen');
@@ -170,8 +170,8 @@ function EnemyDie(playerbullet, enemysprite)
 
 function bulletClash(playerbullet, bulletsprite)
 {
-	playerbullet.destroy();
-	bulletsprite.destroy();
+	playerbullet.kill();
+	bulletsprite.kill();
 };
 
 function playerDie(playersprite, bulletsprite)//wrapper to use state change

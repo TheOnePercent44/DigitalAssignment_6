@@ -36,8 +36,8 @@ function newPlayer(game, xcoord, ycoord)
 	
 	this.kill = function(playersprite, bulletsprite)
 	{
-		bulletsprite.destroy();
-		this.sprite.destroy();
+		bulletsprite.kill();
+		this.sprite.kill();
 	}
 	
 	return this;
