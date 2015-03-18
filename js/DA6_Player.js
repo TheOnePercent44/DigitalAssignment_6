@@ -6,6 +6,7 @@ function Player(game, xcoord, ycoord)
 	this.MAX_SPEED = 500; // pixels/second
     this.ACCELERATION = 1500; // pixels/second/second
     this.DRAG = 300; // pixels/second
+	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.maxVelocity.setTo(this.MAX_SPEED, 0); // x, y
 	this.sprite.body.drag.setTo(this.DRAG, 0); // x, y
 	
@@ -24,7 +25,7 @@ function Player(game, xcoord, ycoord)
 		this.sprite.body.acceleration.x = -this.ACCELERATION;
 	}
 	
-	this.shoot = function()
+	this.shoot = function()//accepted 
 	{
 		
 	}

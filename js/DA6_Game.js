@@ -49,6 +49,7 @@ Secrets.Game.prototype = {
 		map.setCollision(2, true, 'Land', true);
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 		player = new Player(this.game, this.game.rnd.integerInRange(0, 3168), 320);
+		this.game.camera.follow(player.sprite, this.game.camera.FOLLOW_PLATFORMER);
 		
 		baddies = this.game.add.group();
 		baddies.enableBody = true;
@@ -57,7 +58,17 @@ Secrets.Game.prototype = {
 			baddies.add(newEnemy(this.game));
 		}
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
-		//yellowSB = this.game.add.sprite(
+		yellowSB = this.game.add.sprite(this.game.camera.width/2-16, 704);//center of the camera, shifted 16 left to center the square
+		orangeLB = this.game.add.sprite(yellowSB.x-48, 704);//position of yellow, -spacing of 48
+		orangeRB = this.game.add.sprite(yellowSB.x+32+48, 704);//position of yellow, +width of yellow, +spacing of 48
+		
+		yellowSB.inputEnabled = true;
+		orangeLB.inputEnabled = true;
+		orangeRB.inputEnabled = true;
+		
+		yellowSB.events.onInputDown.add(player.shoot, this);
+		orangeLB.events.onInputDown.add(player.moveLeft, this);
+		orangeRB.events.onInputDown.add(player.moveRight, this);
     },
 
     update: function () {
