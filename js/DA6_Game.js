@@ -60,7 +60,7 @@ Secrets.Game.prototype = {
 	///////////////////////////////////////////////////////////////////////////////////////////////////	
 		yellowSB = this.game.add.sprite(this.game.camera.x+(this.game.camera.width/2)-16, 704, 'yellowBlock');//the camera's x postion, +center of the camera, shifted 16 left to center the square
 		orangeLB = this.game.add.sprite(yellowSB.x-48, 704, 'orangeBlock');//position of yellow, -spacing of 48
-		orangeRB = this.game.add.sprite(yellowSB.x+32+48, 704, 'orangeBlock');//position of yellow, +width of yellow, +spacing of 48
+		orangeRB = this.game.add.sprite(yellowSB.x+48, 704, 'orangeBlock');//position of yellow, +spacing of 48
 		
 		yellowSB.inputEnabled = true;
 		orangeLB.inputEnabled = true;
@@ -84,6 +84,11 @@ Secrets.Game.prototype = {
 		{
 			player.idle();
 		}
+		
+		//update button positions
+		yellowSB.x = this.game.camera.x+(this.game.camera.width/2)-16;
+		orangeLB.x = yellowSB.x-48;
+		orangeRB.x = yellowSB.x+48;
     },
 
     quitGame: function (pointer) {
@@ -93,7 +98,6 @@ Secrets.Game.prototype = {
 
         //  Then let's go back to the main menu.
         this.state.start('MainMenu');
-
     }
 
 };
