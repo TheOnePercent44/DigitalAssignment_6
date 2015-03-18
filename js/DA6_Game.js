@@ -116,6 +116,10 @@ Secrets.Game.prototype = {
 			timeMark = this.game.time.now;
 			shootFlag = false;
 		}
+		if(baddies.countLiving === 0)
+		{
+			this.state.start('WinScreen');
+		}
 		//update button positions
 		yellowSB.x = this.game.camera.x+(this.game.camera.width/2)-16;
 		orangeLB.x = yellowSB.x-48;
@@ -175,10 +179,6 @@ function EnemyDie(playerbullet, enemysprite)
 {
 	enemysprite.kill();
 	playerbullet.kill();
-	if(baddies.countLiving === 0)
-	{
-		this.state.start('WinScreen');
-	}
 };
 
 function bulletKill(playerbullet, layer)

@@ -20,7 +20,7 @@ Secrets.WinScreen = function (game) {
 Secrets.WinScreen.prototype = {
 
 	create: function () {
-		var text = this.game.add.text(this.game.camera.width*0.25, this.game.camera.height*0.4, "Congratulations!", { font: "65px Arial", fill: "#FFFFFF", align: "center" });
+		var text = this.game.add.text(this.game.camera.width*0.25, this.game.camera.height*0.4, "Congratulations You Escaped!", { font: "65px Arial", fill: "#FFFFFF", align: "center" });
 		this.game.add.text(this.game.camera.width*0.30, this.game.camera.height*0.5, "(Click to Return to the Menu)", { font: "30px Arial", fill: "#FFFFFF", align: "center" });
 	},
 
