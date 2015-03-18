@@ -49,7 +49,7 @@ Secrets.Game.prototype = {
 		layer.resizeWorld();
 		map.setCollision(2, true, 'Land', true);
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-		player = new newPlayer(this.game, this.game.rnd.integerInRange(0, 3168), 320);
+		player = new newPlayer(this.game, this.game.rnd.integerInRange(0, 3168), 192);
 		this.game.camera.follow(player.sprite, this.game.camera.FOLLOW_PLATFORMER);
 		this.game.camera.width = 800;//dangerous use of camera.width?
 		
@@ -92,6 +92,7 @@ Secrets.Game.prototype = {
 		this.game.physics.arcade.collide(player.sprite, enemybullets, playerDie, null, this);
 		this.game.physics.arcade.collide(bulletgroup, baddies, EnemyDie, null, this);
 		this.game.physics.arcade.collide(bulletgroup, enemybullets, bulletClash, null, this);
+		this.game.physics.arcade.collide(bulletgroup, layer, bulletKill, null, this);
 		
 		if(rightKey.isDown || RBflag)//temporary test movement functionality
 		{
@@ -164,8 +165,8 @@ function EnemyUpdate(enemysprite, game)
 		
 		var temp = this.game.add.sprite(enemysprite.x, enemysprite.y, 'redShot');
 		this.game.physics.enable(temp, Phaser.Physics.ARCADE);
-		temp.body.velocity.x = Math.cos(rotation) * 400;//change the number to make faster and whatnot
-		temp.body.velocity.y = Math.sin(rotation) * 400;
+		temp.body.velocity.x = Math.cos(rotation) * 350;//change the number to make faster and whatnot
+		temp.body.velocity.y = Math.sin(rotation) * 350;
 		bulletgroup.add(temp);
 	}
 };
@@ -180,6 +181,11 @@ function EnemyDie(playerbullet, enemysprite)
 	}
 };
 
+function bulletKill(playerbullet, layer)
+{
+	playerbullet.kill();
+}
+
 function bulletClash(playerbullet, bulletsprite)
 {
 	playerbullet.kill();
@@ -188,6 +194,7 @@ function bulletClash(playerbullet, bulletsprite)
 
 function playerDie(playersprite, bulletsprite)//wrapper to use state change
 {
+	console.log("in playerDie");//debug
 	player.sprite.kill();
 	bulletsprite.kill();
 	this.state.start('LoseScreen');

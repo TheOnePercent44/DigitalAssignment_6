@@ -5,7 +5,7 @@ function newPlayer(game, xcoord, ycoord)
 	this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
 	this.MAX_SPEED = 500; // pixels/second
     this.ACCELERATION = 1500; // pixels/second/second
-    this.DRAG = 400; // pixels/second
+    this.DRAG = 500; // pixels/second
 	this.sprite.body.collideWorldBounds = true;
 	this.sprite.body.maxVelocity.setTo(this.MAX_SPEED, 0); // x, y
 	this.sprite.body.drag.setTo(this.DRAG, 0); // x, y
