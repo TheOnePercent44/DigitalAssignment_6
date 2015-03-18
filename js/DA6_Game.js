@@ -50,6 +50,7 @@ Secrets.Game.prototype = {
 	///////////////////////////////////////////////////////////////////////////////////////////////////
 		player = new Player(this.game, this.game.rnd.integerInRange(0, 3168), 320);
 		this.game.camera.follow(player.sprite, this.game.camera.FOLLOW_PLATFORMER);
+		this.game.camera.width = 800;//dangerous use of camera.width?
 		
 		baddies = this.game.add.group();
 		baddies.enableBody = true;
