@@ -194,7 +194,7 @@ function bulletClash(playerbullet, bulletsprite)
 
 function playerDie(playersprite, bulletsprite)//wrapper to use state change
 {
-	console.log("in playerDie");//debug
+	//console.log("in playerDie");//debug
 	player.sprite.kill();
 	bulletsprite.kill();
 	this.state.start('LoseScreen');
