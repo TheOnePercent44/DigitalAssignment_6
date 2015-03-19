@@ -116,7 +116,7 @@ Secrets.Game.prototype = {
 			timeMark = this.game.time.now;
 			shootFlag = false;
 		}
-		if(baddies.countLiving === 0)
+		if(baddies.countLiving <= 0)
 		{
 			this.state.start('WinScreen');
 		}
