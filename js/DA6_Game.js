@@ -94,11 +94,11 @@ Secrets.Game.prototype = {
 		//this.game.physics.arcade.overlap(bulletgroup, enemybullets, bulletClash, null, this);
 		this.game.physics.arcade.overlap(bulletgroup, layer, bulletKill, null, this);
 		
-		if(rightKey.isDown || RBflag)//temporary test movement functionality
+		if(RBflag)//rightKey.isDown || 
 		{
 			player.moveRight();
 		}
-		else if(leftKey.isDown || LBflag)
+		else if(LBflag)//leftKey.isDown || 
 		{
 			player.moveLeft();
 		}
