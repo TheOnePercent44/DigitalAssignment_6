@@ -19,7 +19,7 @@ Secrets.LoseScreen = function (game) {
 
 Secrets.LoseScreen.prototype = {
 	create: function () {
-		var text = this.game.add.text(this.game.camera.width*0.05, this.game.camera.height*0.4, "The Government Captured You!", { font: "60px Arial", fill: "#FFFFFF", align: "center" });
+		var text = this.game.add.text(this.game.camera.width*0.05, this.game.camera.height*0.4, "The Government Captured You!", { font: "55 Arial", fill: "#FFFFFF", align: "center" });
 		this.game.add.text(this.game.camera.width*0.30, this.game.camera.height*0.5, "(Click to Return to the Menu)", { font: "30px Arial", fill: "#FFFFFF", align: "center" });
 	},
 
